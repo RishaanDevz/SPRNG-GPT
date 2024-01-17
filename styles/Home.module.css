@@ -65,6 +65,7 @@
   font-size: 1.1rem;
   padding: 1rem 2rem 1rem 2rem;
   width: 75vw;
+  
   border-radius: 0.5rem;
   border: 1px solid #30373d;
   background: #0e1524;
@@ -102,6 +103,7 @@
   width: 1.2em;
   height: 1.2em;
   fill: currentColor;
+  
 }
 
 .generatebutton:hover {
@@ -197,6 +199,7 @@
 .boticon, .usericon {
   margin-right: 1rem;
   border-radius: 0.1rem;
+  border-radius: 20%;
 }
 
 .markdownanswer h1, .markdownanswer h2, .markdownanswer h3 {
@@ -286,3 +289,57 @@
   text-align: center;
 }
 }
+
+/* ... (previous CSS styles) */
+
+.voiceToggle {
+  display: flex;
+margin-right: 300px;
+  margin-top: 20px;
+}
+
+
+
+.toggleLabel {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.toggleInput {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.toggleInput:checked + .slider {
+  background-color: #3cb371;
+}
+
+.toggleInput:checked + .slider:before {
+  transform: translateX(20px);
+}
+/* ... (rest of the previous CSS styles) */
