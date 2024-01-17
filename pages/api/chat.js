@@ -18,35 +18,10 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const readHtmlFromFile = async (filePath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-};
-
-const fetchData = async () => {
-  const filePath = '/api/test.txt'; // Update with the actual file path
-  const htmlContent = await readHtmlFromFile(filePath);
-  return cheerio.load(htmlContent);
-};
-
-const extractData = ($) => {
-  const data = [];
-  $("body").each((index, element) => {
-    data.push($(element).text());
-  });
-  return data.join(" ");
-};
-
+const DataFile = process.env['datafile']
 export default async function (req, res) {
   try {
-    const $ = await fetchData(); // Move this line to fetch data first
+ 
     const openaiResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
@@ -56,7 +31,7 @@ export default async function (req, res) {
             You are Valerie, an Artificial Intelligence designed to help visitors on the SPRNGPOD backend site. 
             You make some small talk, you are friendly. THE SPELLING OF SPRNGPOD IS "SPRNGPOD" and stays the same as I have specified. 
             You speak as if you are speaking on behalf of SPRNGPOD. Think of yourself like a spokesperson. 
-            Use this data to teach them about SPRNGPOD Backend: ${extractData($)}
+            Use this data to teach them about SPRNGPOD Backend: ${DataFile}
           `
         }
       ].concat(req.body.messages),
